@@ -14,6 +14,10 @@ A)
 		     jmax = j;
 	
 
+	La complexité de la premiere boucle lié à la deuxième est la somme
+	des n premier entier (n(n-1)/2) et est donc  quadratique.
+	la derniere boucle ajoute la meme somme qui conduit l'algorithme à
+	avoire une complexité cubique.
 
 
 
