@@ -1,0 +1,34 @@
+A)
+	i)
+	tab
+	i, j, k, imax, jmax, somme_max = t[0], somme
+	
+	pour i = 0; i < n; i++	     
+	     pour j = i; j < n; j++
+	     	  somme = 0;
+	     	  pour k = i; k < j; k++
+		       somme += t[k];
+		  si somme > somme_max alors
+		     somme_max = somme;
+		     imax = i;
+		     jmax = j;
+	
+
+
+
+
+	ii)
+	tab
+	i, j, k, l, somme_temp, somme
+	
+	pour i = 0; i < n; i++
+	     somme_temp = 0
+	     pour j = i; j < n; j++
+	     	  somme_temp += tab[j]
+		  si somme_temp > somme alors
+		     somme = semme_temp
+		     k = i
+		     l = j
+
+	
+		  
