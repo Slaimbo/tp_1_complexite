@@ -107,7 +107,7 @@ A)
 		}
 	}
 
-	function fct(int* tab, int pos)//recherche de la plus grande sous sequence se terminant par pos
+	function fct(int* tab, int pos)
 	{
 		int* rep[2];//contient le max et la pos du debut
 		int imin = pos;
