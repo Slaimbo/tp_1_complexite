@@ -10,25 +10,24 @@ int main(int argc, char ** argv)
   for( int i = 0; i < n; i++)
     tab[i] = atoi(argv[i+1]);
  
-  int i = 0, j = 0, k = 0, imax = 0;
-  int jmax = 0, somme_max = tab[0], somme;
+  int i = 0, j = 0, k = 0, l=0;
+  int somme_temp = tab[0], somme= tab[0];
   for(i = 0; i < n; i++)
     {
-      for(j = i; j < n; j++)
+      somme_temp = 0;
+      for( j = i; j < n; j++)
 	{
-	  somme = 0;
-	  for(k = i; k <= j; k++)
-	    somme += tab[k];
-	  if( somme >= somme_max )
+	  somme_temp += tab[j];
+	  if( somme_temp > somme )
 	    {
-	      somme_max = somme;
-	      imax = i;
-	      jmax = j;
+	      somme = somme_temp;
+	      k = i;
+	      l = j;
 	    }
 	}
     }
   
-  std::cout << "Position : " << imax << ' ' << jmax << " Somme : " << somme_max << std::endl;
+  std::cout << "Position : " << k << ' ' << l << " Somme : " << somme << std::endl;
   
   delete [] tab;
   return 0;

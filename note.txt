@@ -90,7 +90,7 @@ A)
 	}
 
 	return rep;
-	
+	Complexité : (n^2)/4 + n/2 => O(n^2)
 
 	iv)
 	Entree : tab, n
