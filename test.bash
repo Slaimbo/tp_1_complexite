@@ -15,8 +15,6 @@ do
 	i=`expr $i + 1`
 done
 
-echo "Algo I :"
-time ./algo_i.exe $tab
 
 echo
 echo "Algo II :"
@@ -31,3 +29,8 @@ echo
 echo "Algo IV :"
 
 time ./algo_iv.exe $tab
+
+echo
+echo "Algo I :"
+time ./algo_i.exe $tab
+

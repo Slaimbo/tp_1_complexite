@@ -2,7 +2,10 @@
 #include <stdlib.h>
 using namespace std;
 
-void Pgss(int*, int*, int);
+
+
+void seq_fusion(int *, int, int, int *);
+void fusion(int* tab, int i, int j, int* sauv1, int* sauv2, int* sauv);
 
 int main(int argc, char ** argv)
 {
@@ -12,58 +15,12 @@ int main(int argc, char ** argv)
 	for( int i = 0; i < n; i++)
 		tab[i] = atoi(argv[i+1]);
 
-	int somme, max, maxd, maxg, k, l;
-	int cor1[3];
-	int cor2[3];
-		
-	Pgss(cor1, tab, n/2);
-	Pgss(cor2, tab + (n/2), n - n/2);
+	int res[3];
+	seq_fusion(tab, 0, n-1, res);
 
-	//Calcul Pgss à gauche
-	somme = 0;
-	maxd = tab[n/2 - 1];
-	k = n/2 - 1;
-	for(int i = (n/2) - 1; i >= 0; i--)
-	{
-		somme += tab[i];
-		if(somme > maxd)
-		{
-			maxd = somme;
-			k = i;
-		}
-	}
-
-	//Calcul Pgss à droite
-	somme = 0;
-	maxg = tab[n/2 - 1];
-	l = n/2 - 1;
-	for(int i = n/2 - 1; i < n; i++)
-	{
-		somme += tab[i];
-		if(somme > maxg)
-		{
-			maxg = somme;
-			l = i;
-		}
-	}
-	
-	max = maxd + maxg - tab[n/2-1];
-	
-	if(cor1[0] > cor2[0] && cor1[0] > max)
-	{
-		max = cor1[0];
-		k = cor1[1];
-		l = cor1[2];
-	}
-	
-	else if(cor2[0] > cor1[0] && cor2[0] > max)
-	{
-		max = cor2[0];
-		k = cor2[1];
-		l = cor2[2];
-	}
-	cout << "Position : " << k << ' ' << l << " Somme : " << max << std::endl;
+	cout << "Position : " << res[1] << ' ' << res[2] << " Somme : " << res[0] << endl;
 	delete [] tab;
+
 	return 0;
 }
 
@@ -71,27 +28,76 @@ int main(int argc, char ** argv)
 
 
 
-void Pgss(int* res, int * tab, int n)
+void seq_fusion(int * tab, int i, int j, int * sauv)
 {
-	int i, j, k, l, somme_temp=tab[0], somme_max=tab[0];
-	for(i = 0; i < n; i++)
+	if( i == j)
 	{
-		somme_temp = 0;
-		for(j = i; j < n; j++)
+		sauv[0] = tab[i];
+		sauv[1] = i;
+		sauv[2] = j;
+		return;
+	}
+
+	int sauv1[3], sauv2[3];
+
+	seq_fusion(tab, i, (i+j)/2, sauv1);
+	seq_fusion(tab, (i+j)/2 + 1, j, sauv2);
+	fusion(tab, i, j, sauv1, sauv2, sauv);
+}
+
+void fusion(int* tab, int i, int j, int* sauv1, int* sauv2, int* sauv)
+{
+	int somme, max, maxd, maxg, k, l;
+
+	//Calcul Pgss à gauche
+	somme = tab[ (i+j)/2 ];
+	maxg  = tab[ (i+j)/2 ];
+	k     = (i+j)/2;
+	for(int p = k-1; p >= i; p--)
+	{
+		somme += tab[p];
+		if(somme > maxg)
 		{
-			somme_temp += tab[j];
-			if( somme_temp > somme_max )
-			{
-				somme_max = somme_temp;
-				k = i;
-				l = j;
-			}
+			maxg = somme;
+			k = p;
 		}
 	}
-	res[0] = somme_max;
-	res[1] = k;
-	res[2] = l;
-	return;
+
+	//Calcul Pgss à droite
+	somme = tab[ (i+j)/2 ];
+	maxd = tab[ (i+j)/2];
+	l = (i+j)/2;
+	for(int p = (i+j)/2 + 1; p <= j; p++)
+	{
+		somme += tab[p];
+		if(somme > maxd)
+		{
+			maxd = somme;
+			l = p;
+		}
+	}
+	
+	max = maxd + maxg - tab[ (i+j)/2 ];
+	
+	if(sauv1[0] > sauv2[0] && sauv1[0] > max)
+	{
+		sauv[0] = sauv1[0];
+		sauv[1] = sauv1[1];
+		sauv[2] = sauv1[2];
+	}
+	
+	else if(sauv2[0] > sauv1[0] && sauv2[0] > max)
+	{
+		sauv[0] = sauv2[0];
+		sauv[1] = sauv2[1];
+		sauv[2] = sauv2[2];
+	}
+	else
+	{
+		sauv[0] = max;
+		sauv[1] = k;
+		sauv[2] = l;
+	}
 }
 
 
