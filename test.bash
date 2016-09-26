@@ -16,21 +16,22 @@ do
 done
 
 
+echo "Algo I :"
+time -p ./algo_i.exe $tab
+
 echo
 echo "Algo II :"
-time ./algo_ii.exe $tab
+time -p ./algo_ii.exe $tab
 
 echo
 echo "Algo III :"
 
-time ./algo_iii.exe $tab
+time -p ./algo_iii.exe $tab
 
 echo
 echo "Algo IV :"
 
-time ./algo_iv.exe $tab
+time -p ./algo_iv.exe $tab
 
-echo
-echo "Algo I :"
-time ./algo_i.exe $tab
+
 

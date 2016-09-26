@@ -13,4 +13,4 @@ algo_iv.exe : algo_iv.cpp
 	g++ -Wall algo_iv.cpp -o algo_iv.exe
 
 clean:
-	rm -f *~ *.exe
+	rm -f *~ *.exe *.data
