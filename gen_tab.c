@@ -8,10 +8,10 @@ int main(int argc, char ** argv)
 {
   srand(time(NULL));
   FILE *F;
-  F =fopen("tab.sample", "w");
-  int i = 0, j = 0, temp, step = atoi(argv[2]);
+  F =fopen("tab.sample", "a");
+  int i = atoi(argv[1]), j = 0, temp, step = atoi(argv[3]), n = atoi(argv[2]);
   
-  while( i < atoi(argv[1]) )
+  while( i < n )
     {
       j = 0;
       if( i % 1000 == 0)
