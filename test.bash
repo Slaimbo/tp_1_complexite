@@ -25,12 +25,10 @@ time -p ./algo_ii.exe $tab
 
 echo
 echo "Algo III :"
-
 time -p ./algo_iii.exe $tab
 
 echo
 echo "Algo IV :"
-
 time -p ./algo_iv.exe $tab
 
 

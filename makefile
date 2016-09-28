@@ -16,4 +16,4 @@ gen_tab.exe: gen_tab.c
 	gcc -Wall gen_tab.c -o gen_tab.c
 
 clean:
-	rm -f *~ *.exe *.data
+	rm -f *~ *.exe
